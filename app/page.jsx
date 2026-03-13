@@ -1,5 +1,8 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { useCart } from './components/CartProvider';
 
 const RanselStore = () => {
     const products = [
@@ -8,13 +11,33 @@ const RanselStore = () => {
         { id: 3, name: 'Ransel Storm-Proof', price: 320000, desc: 'Melindungi buku dari hujan, amanah dalam menjaga isi.' },
     ];
 
+    const { addToCart, cartCount, isLoaded } = useCart();
+    const [addedIds, setAddedIds] = useState([]);
+
+    const handleAddToCart = (product) => {
+        addToCart(product);
+        setAddedIds([...addedIds, product.id]);
+        setTimeout(() => {
+            setAddedIds(prev => prev.filter(id => id !== product.id));
+        }, 2000);
+    };
+
     return (
         <div className="bg-slate-50 min-h-screen font-sans">
             <nav className="p-6 bg-white shadow-sm flex justify-between items-center border-b-4 border-indigo-600">
                 <h1 className="text-2xl font-bold text-indigo-700">🎒 Amanah Backpack</h1>
-                <div className="space-x-4">
+                <div className="flex items-center space-x-6">
                     <Link href="/login" className="text-slate-600 hover:text-indigo-600 font-medium">Masuk</Link>
-                    <button className="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition">Katalog</button>
+                    <Link href="/checkout" className="relative text-slate-600 hover:text-indigo-600 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        {isLoaded && cartCount > 0 && (
+                            <span className="absolute -top-2 -right-2 bg-rose-500 text-white text-xs font-bold px-2 py-0.5 rounded-full shadow-sm">
+                                {cartCount}
+                            </span>
+                        )}
+                    </Link>
                 </div>
             </nav>
 
@@ -33,7 +56,17 @@ const RanselStore = () => {
                         <p className="text-slate-500 text-sm mb-4 flex-1">{p.desc}</p>
                         <div className="flex justify-between items-center border-t pt-4">
                             <span className="text-lg font-bold text-indigo-600">Rp {p.price.toLocaleString('id-ID')}</span>
-                            <button className="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-500 transition">Beli Sekarang</button>
+                            <button 
+                                onClick={() => handleAddToCart(p)}
+                                disabled={addedIds.includes(p.id)}
+                                className={`px-4 py-2 rounded-lg text-sm transition font-medium ${
+                                    addedIds.includes(p.id) 
+                                    ? 'bg-emerald-500 text-white cursor-default'
+                                    : 'bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95'
+                                }`}
+                            >
+                                {addedIds.includes(p.id) ? '✓ Dimasukkan' : '+ Keranjang'}
+                            </button>
                         </div>
                     </div>
                 ))}
