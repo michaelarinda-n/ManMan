@@ -41,7 +41,7 @@ const RanselStore = () => {
 
             <footer className="bg-slate-900 text-slate-500 py-10 text-center text-sm">
                 <p>&quot;Maka sempurnakanlah takaran dan timbangan...&quot; (QS. Al-A&apos;raf: 85)</p>
-                <p className="mt-2">© 2026 Bisnis Tas Ransel Sekolah Syariah</p>
+                <p className="mt-2">&copy; 2026 Bisnis Tas Ransel Sekolah Syariah</p>
             </footer>
         </div>
     );

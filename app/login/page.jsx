@@ -18,7 +18,7 @@ const Login = () => {
                 <div className="bg-emerald-600 p-6 text-center">
                     <h1 className="text-3xl font-bold text-white mb-2">POS Syariah</h1>
                     <p className="text-emerald-100 text-sm italic">
-                        "Sesungguhnya Allah menyuruh kamu menyampaikan amanat kepada yang berhak menerimanya."
+                        &quot;Sesungguhnya Allah menyuruh kamu menyampaikan amanat kepada yang berhak menerimanya.&quot;
                     </p>
                 </div>
 
