@@ -83,6 +83,7 @@ export default function Shop() {
             {/* Hero Section */}
             <div className="relative bg-black text-white overflow-hidden">
                 <div className="absolute inset-0">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                         src="https://images.unsplash.com/photo-1491897554428-130a60dd4757?q=80&w=2000&auto=format&fit=crop"
                         alt="Hero Background - Premium Bags"
@@ -122,6 +123,7 @@ export default function Shop() {
                     {products.map((product) => (
                         <div key={product.id} className="group relative flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
                             <div className="relative w-full h-80 bg-gray-200 overflow-hidden">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
                                     src={product.image}
                                     alt={product.name}
@@ -172,9 +174,9 @@ export default function Shop() {
                     </div>
                     <p className="text-gray-500 text-sm">© 2026 Toko Man Man. Semua hak dilindungi.</p>
                     <div className="flex space-x-6 text-gray-400">
-                        <a href="#" className="hover:text-gray-900 transition-colors">Instagram</a>
-                        <a href="#" className="hover:text-gray-900 transition-colors">Facebook</a>
-                        <a href="#" className="hover:text-gray-900 transition-colors">Twitter</a>
+                        <Link href="#" className="hover:text-gray-900 transition-colors">Instagram</Link>
+                        <Link href="#" className="hover:text-gray-900 transition-colors">Facebook</Link>
+                        <Link href="#" className="hover:text-gray-900 transition-colors">Twitter</Link>
                     </div>
                 </div>
             </footer>

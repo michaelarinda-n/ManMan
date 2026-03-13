@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -65,7 +66,7 @@ const Login = () => {
                     </form>
 
                     <div className="mt-6 text-center text-sm text-gray-500">
-                        Belum memiliki akun vendor? <a href="/register" className="text-emerald-600 hover:underline font-medium">Daftar sekarang</a>
+                        Belum memiliki akun vendor? <Link href="/register" className="text-emerald-600 hover:underline font-medium">Daftar sekarang</Link>
                     </div>
                 </div>
             </div>
